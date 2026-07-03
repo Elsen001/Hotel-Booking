@@ -9,7 +9,6 @@ interface DayRowProps {
   day: DaySelection;
 }
 
-/** A single row in the daily-configuration table (Step 2). */
 export default function DayRow({ index, day }: DayRowProps) {
   const { state, dispatch } = useBooking();
   const { destination, boardType, startDate } = state;

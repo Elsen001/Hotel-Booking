@@ -39,7 +39,6 @@ describe('canSelectMeal — board rules', () => {
   it('HB is mutually exclusive', () => {
     expect(canSelectMeal('HB', 'lunch', emptyDay)).toBe(true);
     expect(canSelectMeal('HB', 'dinner', emptyDay)).toBe(true);
-    // Once lunch is chosen, dinner is blocked and vice-versa.
     const withLunch: DaySelection = { ...emptyDay, lunchId: 4 };
     expect(canSelectMeal('HB', 'dinner', withLunch)).toBe(false);
     expect(canSelectMeal('HB', 'lunch', withLunch)).toBe(true);
@@ -50,20 +49,20 @@ describe('canSelectMeal — board rules', () => {
 
 describe('cost calculation', () => {
   it('sums hotel + selected meals for a day', () => {
-    const day: DaySelection = { hotelId: 101, lunchId: 4, dinnerId: 1 }; // 120 + 10 + 15
+    const day: DaySelection = { hotelId: 101, lunchId: 4, dinnerId: 1 };
     const cost = computeDayCost('Turkey', day);
     expect(cost).toEqual({ hotel: 120, lunch: 10, dinner: 15, total: 145 });
   });
 
   it('treats unselected items as zero', () => {
-    const day: DaySelection = { hotelId: 102, lunchId: null, dinnerId: null }; // 90
+    const day: DaySelection = { hotelId: 102, lunchId: null, dinnerId: null };
     expect(computeDayCost('Turkey', day).total).toBe(90);
   });
 
   it('computes a grand total across days', () => {
     const days: DaySelection[] = [
-      { hotelId: 101, lunchId: 4, dinnerId: 1 }, // 145
-      { hotelId: 102, lunchId: null, dinnerId: 2 }, // 90 + 18 = 108
+      { hotelId: 101, lunchId: 4, dinnerId: 1 },
+      { hotelId: 102, lunchId: null, dinnerId: 2 },
     ];
     expect(computeGrandTotal('Turkey', days)).toBe(253);
   });

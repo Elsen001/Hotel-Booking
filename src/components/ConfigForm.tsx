@@ -16,7 +16,6 @@ interface Errors {
   boardType?: string;
 }
 
-/** Step 1 — initial trip configuration form with validation. */
 export default function ConfigForm({ onSubmit }: ConfigFormProps) {
   const { state, dispatch } = useBooking();
   const [errors, setErrors] = useState<Errors>({});
@@ -49,7 +48,6 @@ export default function ConfigForm({ onSubmit }: ConfigFormProps) {
       </header>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        {/* Citizenship */}
         <div>
           <label htmlFor="citizenship" className="field-label">
             Citizenship
@@ -64,7 +62,6 @@ export default function ConfigForm({ onSubmit }: ConfigFormProps) {
           {errors.citizenship && <p className="mt-1 text-xs text-red-600">{errors.citizenship}</p>}
         </div>
 
-        {/* Destination */}
         <div>
           <label htmlFor="destination" className="field-label">
             Destination Country
@@ -79,7 +76,6 @@ export default function ConfigForm({ onSubmit }: ConfigFormProps) {
           {errors.destination && <p className="mt-1 text-xs text-red-600">{errors.destination}</p>}
         </div>
 
-        {/* Start date */}
         <div>
           <label htmlFor="startDate" className="field-label">
             Start Date
@@ -94,7 +90,6 @@ export default function ConfigForm({ onSubmit }: ConfigFormProps) {
           {errors.startDate && <p className="mt-1 text-xs text-red-600">{errors.startDate}</p>}
         </div>
 
-        {/* Number of days */}
         <div>
           <label htmlFor="numDays" className="field-label">
             Number of Days
@@ -112,7 +107,6 @@ export default function ConfigForm({ onSubmit }: ConfigFormProps) {
         </div>
       </div>
 
-      {/* Board type */}
       <fieldset>
         <legend className="field-label">Board Type</legend>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">

@@ -30,7 +30,6 @@ export interface CountryMeals {
   dinner: Meal[];
 }
 
-/** A single day's selections in the itinerary. */
 export interface DaySelection {
   hotelId: number | null;
   lunchId: number | null;

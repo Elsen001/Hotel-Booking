@@ -8,7 +8,6 @@ interface DailyConfigProps {
   onNext: () => void;
 }
 
-/** Step 2 — one row per day with hotel + meal selection, governed by board rules. */
 export default function DailyConfig({ onBack, onNext }: DailyConfigProps) {
   const { state } = useBooking();
   const board = boardTypes.find((b) => b.code === state.boardType);

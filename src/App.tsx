@@ -11,7 +11,6 @@ export default function App() {
   const [booting, setBooting] = useState(true);
   const [savedFlash, setSavedFlash] = useState(false);
 
-  // Brief boot loading state (bonus: loading states/animations).
   useEffect(() => {
     const t = setTimeout(() => setBooting(false), 500);
     return () => clearTimeout(t);

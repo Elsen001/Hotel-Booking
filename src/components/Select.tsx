@@ -13,7 +13,6 @@ interface SelectProps {
   'aria-label'?: string;
 }
 
-/** Thin, styled wrapper around a native <select> for consistent look & a11y. */
 export default function Select({
   value,
   onChange,

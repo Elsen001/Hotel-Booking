@@ -21,7 +21,6 @@ const Row = ({ label, value }: { label: string; value: string }) => (
   </div>
 );
 
-/** Step 3 — configuration summary, per-day breakdown, and grand total. */
 export default function Summary({ onBack }: SummaryProps) {
   const { state } = useBooking();
   const { destination, days, startDate, numDays } = state;
@@ -31,7 +30,6 @@ export default function Summary({ onBack }: SummaryProps) {
 
   return (
     <section className="space-y-6 animate-fade-in">
-      {/* Configuration Summary */}
       <div className="card">
         <h2 className="mb-3 text-lg font-semibold text-slate-900">Configuration Summary</h2>
         <dl className="text-sm">
@@ -51,7 +49,6 @@ export default function Summary({ onBack }: SummaryProps) {
         </dl>
       </div>
 
-      {/* Daily Selections */}
       <div className="card">
         <h2 className="mb-3 text-lg font-semibold text-slate-900">Daily Selections</h2>
         <div className="space-y-3">
@@ -93,7 +90,6 @@ export default function Summary({ onBack }: SummaryProps) {
         </div>
       </div>
 
-      {/* Total Price */}
       <div className="card bg-brand-600 text-white">
         <div className="flex items-center justify-between">
           <div>

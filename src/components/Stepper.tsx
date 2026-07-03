@@ -1,10 +1,9 @@
 const steps = ['Configuration', 'Daily Setup', 'Summary'];
 
 interface StepperProps {
-  current: number; // 0-based
+  current: number;
 }
 
-/** Progress indicator across the three booking steps. */
 export default function Stepper({ current }: StepperProps) {
   return (
     <ol className="no-print mb-6 flex items-center gap-2">

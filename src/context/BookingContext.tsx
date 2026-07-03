@@ -31,10 +31,6 @@ type Action =
   | { type: 'RESET' }
   | { type: 'LOAD'; state: BookingState };
 
-/**
- * Resize the days array to `count`, preserving existing selections and
- * padding with empty days when the trip is extended.
- */
 function resizeDays(days: DaySelection[], count: number): DaySelection[] {
   const next = days.slice(0, count);
   while (next.length < count) next.push(emptyDay());
@@ -52,7 +48,6 @@ function reducer(state: BookingState, action: Action): BookingState {
     }
 
     case 'SET_BOARD': {
-      // Clear meal selections that are no longer valid under the new board.
       const days = state.days.map((d) => {
         if (action.value === 'NB') return { ...d, lunchId: null, dinnerId: null };
         return d;
@@ -61,14 +56,12 @@ function reducer(state: BookingState, action: Action): BookingState {
     }
 
     case 'SET_DESTINATION': {
-      // Destination change invalidates hotel & meal ids from the old country.
       const days = state.days.map(() => emptyDay());
       return { ...state, destination: action.value, days };
     }
 
     case 'GENERATE_DAYS': {
       const days = resizeDays(state.days, state.numDays).map((d) => {
-        // Default each day to the first available hotel for convenience.
         if (d.hotelId == null && state.destination) {
           const first = hotels[state.destination]?.[0];
           return { ...d, hotelId: first ? first.id : null };
@@ -111,7 +104,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
-      /* storage unavailable — ignore */
+      return;
     }
   }, [state]);
 
@@ -141,7 +134,6 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useBooking() {
   const ctx = useContext(BookingContext);
   if (!ctx) throw new Error('useBooking must be used within a BookingProvider');
